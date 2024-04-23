@@ -26,7 +26,7 @@ public class CommonController {
     /**
      * 测试接口
      *
-     * @return ResultInfo 返回操作的结果信息，包括结果代码和相关消息。
+     * @return ResultInfo 返回操作的结果信息，包括结果代码和相关消息
      */
     @PostMapping("test")
     @ResponseBody
