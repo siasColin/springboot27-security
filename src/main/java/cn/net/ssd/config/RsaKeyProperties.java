@@ -1,0 +1,69 @@
+package cn.net.ssd.config;
+
+import cn.net.ssd.common.util.RsaUtils;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+
+/**
+ * @Package: cn.net.ssd.common.config
+ * @Author: sxf
+ * @Date: 2020-3-4
+ * @Description: 封装rsa配置信息
+ */
+@Component
+@ConfigurationProperties("rsa.key")
+public class RsaKeyProperties {
+
+    private String pubKeyFile;
+    private String priKeyFile;
+
+    private PublicKey publicKey;
+    private PrivateKey privateKey;
+
+    @PostConstruct
+    public void createRsaKey() throws Exception {
+        if (pubKeyFile != null && priKeyFile != null && !pubKeyFile.trim().equals("") && !priKeyFile.trim().equals("")) {
+            try {
+                publicKey = RsaUtils.getPublicKey(pubKeyFile);
+                privateKey = RsaUtils.getPrivateKey(priKeyFile);
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    public String getPubKeyFile() {
+        return pubKeyFile;
+    }
+
+    public void setPubKeyFile(String pubKeyFile) {
+        this.pubKeyFile = pubKeyFile;
+    }
+
+    public String getPriKeyFile() {
+        return priKeyFile;
+    }
+
+    public void setPriKeyFile(String priKeyFile) {
+        this.priKeyFile = priKeyFile;
+    }
+
+    public PublicKey getPublicKey() {
+        return publicKey;
+    }
+
+    public void setPublicKey(PublicKey publicKey) {
+        this.publicKey = publicKey;
+    }
+
+    public PrivateKey getPrivateKey() {
+        return privateKey;
+    }
+
+    public void setPrivateKey(PrivateKey privateKey) {
+        this.privateKey = privateKey;
+    }
+}

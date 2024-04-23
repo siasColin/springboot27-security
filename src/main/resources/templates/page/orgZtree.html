@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="_csrf" th:content="${_csrf !=null} ? ${_csrf.token} : ''"/>
+    <meta name="_csrf_header" th:content="${_csrf !=null} ? ${_csrf.headerName} : ''"/>
+    <title>智能质控子系统</title>
+    <link rel="stylesheet" th:href="@{/plugin/layui/css/layui.css}"  media="all">
+    <link rel="stylesheet" th:href="@{/plugin/zTree_v3/css/zTreeStyle/zTreeStyle.css}" type="text/css">
+</head>
+<body>
+<input type="hidden" id="basepath" th:value="${#httpServletRequest.getScheme() + '://' + #httpServletRequest.getServerName() + ':' + #request.getServerPort()  + #request.getContextPath() + '/'} "/>
+<div>
+    <ul id="userTree" class="ztree" style="overflow: auto;"></ul>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/js/common/common.js}"></script>
+<script type="text/javascript" th:src="@{/plugin/layui/layui.js}"></script>
+<!-- 引入ztree插件 -->
+<script type="text/javascript" th:src="@{/plugin/zTree_v3/js/jquery.ztree.all.js}"></script>
+<!-- 引入ztree插件扩展功能 -->
+<script type="text/javascript" th:src="@{/plugin/zTree_v3/js/jquery.ztree.exhide.js}"></script>
+<script type="text/javascript" th:src="@{/js/page/orgZtree.js}"></script>
+</html>
